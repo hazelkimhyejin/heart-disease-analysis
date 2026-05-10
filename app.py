@@ -44,23 +44,28 @@ FEATURE_LABELS = {
 # ── Custom CSS ─────────────────────────────────────────────────────────────────
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap');
 
 :root {
-    --cream:   #F5F0E8;
-    --ink:     #1A1208;
-    --red:     #C0392B;
-    --red-lt:  #E74C3C;
-    --green:   #1A6B3C;
-    --green-lt:#27AE60;
-    --gold:    #B8960C;
-    --border:  #D4C9B0;
-    --card-bg: #FDFAF4;
+    --white:    #FFFFFF;
+    --bg:       #F0F2FF;
+    --ink:      #1B1340;
+    --purple:   #6C3FC5;
+    --purple-lt:#EDE8FA;
+    --blue:     #2563EB;
+    --blue-lt:  #DBEAFE;
+    --alert:    #DC2626;
+    --alert-lt: #FEE2E2;
+    --safe:     #0F766E;
+    --safe-lt:  #CCFBF1;
+    --border:   #C7C2E8;
+    --card-bg:  #FFFFFF;
+    --muted:    #6B7280;
 }
 
 html, body, [class*="css"] {
-    font-family: 'DM Sans', sans-serif;
-    background-color: var(--cream) !important;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--bg) !important;
     color: var(--ink);
 }
 
@@ -69,45 +74,46 @@ html, body, [class*="css"] {
 
 /* Header */
 .app-header {
-    border-bottom: 2px solid var(--ink);
-    padding-bottom: 1.2rem;
+    background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+    border-radius: 12px;
+    padding: 2rem 2.4rem;
     margin-bottom: 2rem;
 }
 .app-title {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2.8rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem;
     line-height: 1.1;
-    color: var(--ink);
+    color: #FFFFFF;
     margin: 0;
 }
 .app-subtitle {
-    font-size: 0.95rem;
-    color: #6B5E45;
-    margin-top: 0.4rem;
-    font-weight: 300;
-    letter-spacing: 0.03em;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.8);
+    margin-top: 0.5rem;
+    font-weight: 400;
 }
 .badge {
     display: inline-block;
-    background: var(--ink);
-    color: var(--cream);
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.12em;
+    background: rgba(255,255,255,0.2);
+    color: #FFFFFF;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    padding: 3px 10px;
-    border-radius: 2px;
+    padding: 4px 12px;
+    border-radius: 20px;
     margin-bottom: 0.8rem;
+    border: 1px solid rgba(255,255,255,0.35);
 }
 
 /* Section labels */
 .section-label {
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.14em;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: #8B7355;
-    border-bottom: 1px solid var(--border);
+    color: var(--purple);
+    border-bottom: 2px solid var(--purple-lt);
     padding-bottom: 0.4rem;
     margin-bottom: 1.2rem;
     margin-top: 1.8rem;
@@ -115,119 +121,116 @@ html, body, [class*="css"] {
 
 /* Result cards */
 .result-card {
-    border: 2px solid var(--ink);
-    border-radius: 4px;
-    padding: 2rem;
+    border-radius: 10px;
+    padding: 1.5rem 2rem;
     margin: 1.5rem 0;
-    position: relative;
-    overflow: hidden;
 }
 .result-card.disease {
-    background: #FDF0EE;
-    border-color: var(--red);
+    background: var(--alert-lt);
+    border-left: 5px solid var(--alert);
 }
 .result-card.no-disease {
-    background: #EEF7F2;
-    border-color: var(--green);
+    background: var(--safe-lt);
+    border-left: 5px solid var(--safe);
 }
 .result-label {
-    font-family: 'DM Serif Display', serif;
-    font-size: 2rem;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
     margin: 0;
 }
-.result-label.disease { color: var(--red); }
-.result-label.no-disease { color: var(--green); }
+.result-label.disease { color: var(--alert); }
+.result-label.no-disease { color: var(--safe); }
 .result-confidence {
-    font-size: 0.85rem;
-    color: #6B5E45;
+    font-size: 0.83rem;
+    color: var(--muted);
     margin-top: 0.3rem;
 }
 
 /* Progress bar override */
-.stProgress > div > div { background-color: var(--ink) !important; }
+.stProgress > div > div { background-color: var(--purple) !important; }
 
 /* Feature importance bars */
 .feat-bar-wrap { margin: 0.5rem 0; }
 .feat-bar-label {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     color: var(--ink);
-    margin-bottom: 2px;
+    margin-bottom: 3px;
     display: flex;
     justify-content: space-between;
 }
 .feat-bar-track {
-    background: var(--border);
-    border-radius: 2px;
+    background: var(--purple-lt);
+    border-radius: 4px;
     height: 8px;
     width: 100%;
 }
 .feat-bar-fill {
     height: 8px;
-    border-radius: 2px;
+    border-radius: 4px;
     transition: width 0.6s ease;
 }
-.feat-bar-fill.pos { background: var(--red); }
-.feat-bar-fill.neg { background: var(--green); }
+.feat-bar-fill.pos { background: var(--alert); }
+.feat-bar-fill.neg { background: var(--safe); }
 
 /* Metric boxes */
 .metric-row {
     display: flex;
-    gap: 1rem;
+    gap: 0.8rem;
     margin: 1rem 0;
 }
 .metric-box {
     flex: 1;
-    border: 1px solid var(--border);
-    border-radius: 4px;
-    padding: 1rem 1.2rem;
-    background: var(--card-bg);
+    border-radius: 10px;
+    padding: 1rem;
+    background: var(--purple-lt);
     text-align: center;
+    border: 1px solid var(--border);
 }
 .metric-val {
-    font-family: 'DM Serif Display', serif;
-    font-size: 1.8rem;
-    color: var(--ink);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.7rem;
+    color: var(--purple);
 }
 .metric-name {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: #8B7355;
+    color: var(--muted);
     margin-top: 0.2rem;
 }
 
 /* Info box */
 .info-box {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-left: 3px solid var(--gold);
+    background: var(--blue-lt);
+    border: 1px solid #BFDBFE;
+    border-left: 4px solid var(--blue);
     padding: 0.9rem 1.1rem;
-    border-radius: 2px;
-    font-size: 0.84rem;
-    color: #5A4B30;
+    border-radius: 8px;
+    font-size: 0.82rem;
+    color: #1E3A8A;
     margin: 1rem 0;
 }
 
 /* Streamlit widget label overrides */
-label { font-size: 0.85rem !important; font-weight: 500 !important; color: var(--ink) !important; }
-.stSelectbox > div, .stNumberInput > div { border-color: var(--border) !important; }
+label { font-size: 0.83rem !important; font-weight: 600 !important; color: var(--ink) !important; }
+.stSelectbox > div, .stNumberInput > div { border-color: var(--border) !important; border-radius: 8px !important; }
 
 /* Button */
 .stButton > button {
-    background: var(--ink) !important;
-    color: var(--cream) !important;
+    background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%) !important;
+    color: #FFFFFF !important;
     border: none !important;
-    border-radius: 2px !important;
-    font-family: 'DM Sans', sans-serif !important;
+    border-radius: 8px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
     font-size: 0.85rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.08em !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.06em !important;
     text-transform: uppercase !important;
-    padding: 0.7rem 2rem !important;
+    padding: 0.75rem 2rem !important;
     width: 100% !important;
     transition: opacity 0.2s !important;
 }
-.stButton > button:hover { opacity: 0.85 !important; }
+.stButton > button:hover { opacity: 0.88 !important; }
 
 footer { visibility: hidden; }
 #MainMenu { visibility: hidden; }
@@ -240,8 +243,8 @@ st.markdown("""
     <div class="badge">Clinical ML · UCI Dataset · 1,025 Patients</div>
     <h1 class="app-title">🫀 Heart Disease<br>Risk Predictor</h1>
     <p class="app-subtitle">
-        Logistic regression model · 87.4% recall · Optimised for medical sensitivity<br>
-        Built by <strong>Hazel I.</strong> · <a href="https://github.com/hazelkimhyejin/heart-disease-analysis" target="_blank" style="color:#B8960C;">github.com/hazelkimhyejin</a>
+        Logistic regression · 87.4% recall · Optimised for medical sensitivity<br>
+        Built by <strong>Hazel I.</strong> · <a href="https://github.com/hazelkimhyejin/heart-disease-analysis" target="_blank" style="color:rgba(255,255,255,0.85);">github.com/hazelkimhyejin</a>
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -327,7 +330,7 @@ with right:
             <div class="feat-bar-wrap">
                 <div class="feat-bar-label">
                     <span>{label}</span>
-                    <span style="color:{'#C0392B' if direction=='pos' else '#1A6B3C'};font-size:0.75rem">{arrow}</span>
+                    <span style="color:{'#DC2626' if direction=='pos' else '#0F766E'};font-size:0.75rem">{arrow}</span>
                 </div>
                 <div class="feat-bar-track">
                     <div class="feat-bar-fill {direction}" style="width:{pct}%"></div>
@@ -385,7 +388,7 @@ with right:
             <div class="feat-bar-wrap">
                 <div class="feat-bar-label">
                     <span>{label}</span>
-                    <span style="color:{'#C0392B' if direction=='pos' else '#1A6B3C'};font-size:0.75rem">{arrow}</span>
+                    <span style="color:{'#DC2626' if direction=='pos' else '#0F766E'};font-size:0.75rem">{arrow}</span>
                 </div>
                 <div class="feat-bar-track">
                     <div class="feat-bar-fill {direction}" style="width:{pct}%"></div>
@@ -402,12 +405,12 @@ with right:
 # ── Footer ─────────────────────────────────────────────────────────────────────
 st.markdown("---")
 st.markdown("""
-<div style="display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;color:#8B7355;padding:0.5rem 0">
+<div style="display:flex;justify-content:space-between;align-items:center;font-size:0.78rem;color:#6B7280;padding:0.5rem 0">
     <span>Built by <strong>Hazel I.</strong> · UCI Cleveland Heart Disease Dataset · 1,025 patients</span>
     <span>
-        <a href="https://github.com/hazelkimhyejin/heart-disease-analysis" target="_blank" style="color:#B8960C;text-decoration:none">GitHub</a>
+        <a href="https://github.com/hazelkimhyejin/heart-disease-analysis" target="_blank" style="color:#6C3FC5;text-decoration:none">GitHub</a>
         &nbsp;·&nbsp;
-        <a href="https://linkedin.com/in/hazel-ip-jl" target="_blank" style="color:#B8960C;text-decoration:none">LinkedIn</a>
+        <a href="https://linkedin.com/in/hazel-ip-jl" target="_blank" style="color:#2563EB;text-decoration:none">LinkedIn</a>
     </span>
 </div>
 """, unsafe_allow_html=True)
