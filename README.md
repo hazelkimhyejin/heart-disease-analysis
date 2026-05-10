@@ -1,44 +1,67 @@
-# Heart Disease Analysis
+# 🫀 Heart Disease Risk Predictor
 
-## Overview
-Analysis of the UCI Cleveland Heart Disease dataset 
-consisting of 1025 patients and 14 variables, exploring 
-risk factors associated with heart disease.
+A clinical ML web app built with Python and Streamlit, trained on the UCI Cleveland Heart Disease dataset (1,025 patients).
 
-## Tools Used
-- Python
-- Pandas
-- Matplotlib & Seaborn
-- Scipy
-- Jupyter Notebook
+## Live Demo
+🔗 [heart-disease-predictor.streamlit.app](https://heart-disease-predictor.streamlit.app) *(deploy link goes here)*
 
-## Key Findings
-1. FIndings about age
-Average age was 54, but disease peaked visually around 58, suggesting middle-to-late age carries higher risk.
+## Model Performance
+| Metric | Score |
+|---|---|
+| **Recall** | **87.4%** ← key metric |
+| Precision | 75.6% |
+| Accuracy | 79.5% |
 
-2. Findings about cholesterol
-Average cholesterol was 246 mg/dL, which is borderline high (normal is under 200), yet paradoxically patients WITHOUT disease had higher cholesterol, suggesting cholesterol alone is a poor predictor.
+> **Why recall?** In medical screening, missing a sick patient (false negative) is far more dangerous than a false alarm. The model uses a 0.40 classification threshold instead of the default 0.50 to maximise sensitivity.
 
-3. Findings about chest pain
-Chest pain is positively correlated with heart disease. More chest pain = higher likelihood of having heart disease.
+## Key Findings from EDA
+- **Chest pain type** and **max heart rate** are the strongest predictors — not cholesterol
+- Patients *without* heart disease had paradoxically **higher cholesterol** on average (251 vs 241 mg/dL)
+- Typical angina appeared **more often in healthy patients** — explaining why heart disease is frequently misdiagnosed
+- Exercise-induced angina appeared in **44% of disease patients** vs 20% of healthy patients
 
-4. Findings about thalach and cp correlation
-thalach (max heart rate) is positively correlated with heart disease.
+## Tech Stack
+- **Python** · pandas · NumPy
+- **scikit-learn** — Logistic Regression, StandardScaler, threshold tuning
+- **Streamlit** — web app deployment
+- **Matplotlib / Seaborn / SciPy** — EDA and visualisation
 
+## Project Structure
+```
+heart-disease-app/
+├── app.py              # Streamlit app
+├── model.pkl           # Trained logistic regression model
+├── scaler.pkl          # StandardScaler for input normalisation
+├── requirements.txt    # Python dependencies
+└── README.md
+```
 
-## Surprising Findings
-1. Patients with no heart disease have higher cholesterol. Cholesterol alone doesn't tell entire story. This means heart disease is caused by a combination of factors, age, blood pressure, cholesterol and lifestyle, not simply cholesterol alone. Thus, it is important to multivariate analysis (look at many variables together) instead of just one at a time.
+## Run Locally
+```bash
+git clone https://github.com/hazelkimhyejin/heart-disease-analysis
+cd heart-disease-analysis
+pip install -r requirements.txt
+streamlit run app.py
+```
 
-2. Typical angina patients had LESS disease than expected.
+## Deploy to Streamlit Cloud (Free)
+1. Push this repo to GitHub
+2. Go to [share.streamlit.io](https://share.streamlit.io)
+3. Connect your GitHub repo
+4. Set main file path: `app.py`
+5. Click **Deploy** — live in ~2 minutes
 
-## Limitations
-- Data set dates from 1988 and consists of four databases from Cleveland, Hungary, Switzerland, and Long Beach V. This means that Southeast Asians are not included in the dataset, limiting the dataset.
-
-## How to Run
-1. Clone this repo
-2. Install dependencies: `pip install pandas numpy matplotlib seaborn scipy`
-3. Open `heart_disease_analysis.ipynb` in Jupyter or VS Code
-4. Run all cells
+## Next Steps
+- [ ] Add Random Forest / XGBoost ensemble → target recall >95%
+- [ ] SHAP values for deeper explainability
+- [ ] Threshold tuning UI slider for clinicians
 
 ## Dataset
-UCI Heart Disease Dataset (Cleveland) via Kaggle
+UCI Machine Learning Repository — Cleveland Heart Disease Dataset  
+Source: [Kaggle](https://www.kaggle.com/datasets/cherngs/heart-disease-cleveland-uci)  
+1,025 patients · 14 variables · 51% disease rate
+
+---
+
+Built by **[Hazel I.](https://linkedin.com/in/hazel-ip-jl)** · Applied AI & ML Portfolio  
+Singapore / Seoul · English–Korean Bilingual
