@@ -1,4 +1,4 @@
-# Heart Disease Analysis 🫀
+# Heart Disease Analysis
 
 ## Overview
 Analysis of the UCI Cleveland Heart Disease dataset 
